@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "957448907574",
+    "project_id": "cantwaitgawel",
+    "storage_bucket": "cantwaitgawel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957448907574:android:106f1ecf1d32515f566197",
+        "android_client_info": {
+          "package_name": "com.gawelsikora.cantwait28"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957448907574-0infh3om2urkihkcckbakfi9bedku49e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4iBtySnIklb_TvpdvKWW25C--vzTKRTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957448907574-0infh3om2urkihkcckbakfi9bedku49e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
