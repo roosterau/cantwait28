@@ -1,6 +1,6 @@
 import 'package:cantwait28/features/add/page/add_page.dart';
 import 'package:cantwait28/features/home/cubit/home_cubit.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cantwait28/items_models/items_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,18 +42,16 @@ class _HomePageBody extends StatelessWidget {
       create: (context) => HomeCubit()..start(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          final docs = state.items?.docs;
-          if (docs == null) {
-            return const SizedBox.shrink();
-          }
+          final itemModels = state.items;
+
           return ListView(
             padding: const EdgeInsets.symmetric(
               vertical: 20,
             ),
             children: [
-              for (final doc in docs)
+              for (final itemModel in itemModels)
                 Dismissible(
-                  key: ValueKey(doc.id),
+                  key: ValueKey(itemModel.id),
                   background: const DecoratedBox(
                     decoration: BoxDecoration(
                       color: Colors.red,
@@ -73,10 +71,10 @@ class _HomePageBody extends StatelessWidget {
                     return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (direction) {
-                    context.read<HomeCubit>().remove(documentID: doc.id);
+                    context.read<HomeCubit>().remove(documentID: itemModel.id);
                   },
                   child: _ListViewItem(
-                    document: doc,
+                    itemModel: itemModel,
                   ),
                 ),
             ],
@@ -90,10 +88,10 @@ class _HomePageBody extends StatelessWidget {
 class _ListViewItem extends StatelessWidget {
   const _ListViewItem({
     Key? key,
-    required this.document,
+    required this.itemModel,
   }) : super(key: key);
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> document;
+  final ItemsModels itemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +112,7 @@ class _ListViewItem extends StatelessWidget {
                 color: Colors.black12,
                 image: DecorationImage(
                   image: NetworkImage(
-                    document['image_url'],
+                    itemModel.imageUrl,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -130,7 +128,7 @@ class _ListViewItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          document['title'],
+                          itemModel.title,
                           style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -138,9 +136,7 @@ class _ListViewItem extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          (document['release_date'] as Timestamp)
-                              .toDate()
-                              .toString(),
+                          itemModel.dateTime.toString(),
                         ),
                       ],
                     ),
