@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ItemsModels {
   ItemsModels({
     required this.id,
@@ -12,5 +14,9 @@ class ItemsModels {
 
   String daysLeft() {
     return dateTime.difference(DateTime.now()).inDays.toString();
+  }
+
+  String dateDisplay() {
+    return DateFormat.yMMMEd().format(dateTime);
   }
 }
