@@ -19,8 +19,21 @@ class ItemsRepository {
     });
   }
 
+
+
+   Future<ItemsModels> get({required String id}) async {
+    final doc = await FirebaseFirestore.instance.collection('items').doc(id).get();
+    return ItemsModels(
+          id: doc.id,
+          title: doc['title'],
+          imageUrl: doc['image_url'],
+          dateTime: (doc['release_date'] as Timestamp).toDate(),
+        );
+  }
+
   Future<void> delete({required String id}) {
     return FirebaseFirestore.instance.collection('items').doc(id).delete();
+    
   }
 
   Future<void> add(
