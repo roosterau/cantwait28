@@ -11,10 +11,11 @@ environment:
 dependencies:
   cloud_firestore: ^3.1.6
 
-  firebase_core: ^1.11.0
+  firebase_core: ^1.20.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutterfire_ui: ^0.3.1
   intl: ^0.17.0
 
 dev_dependencies:
